@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<button id="callPass">call</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$( "#callPass" ).click(function() {
+ $.get("https://eci-apple-wallet-poc.kpsj001.us-west.mybluemix.net/givemepass", function(data, status){
+        console.log("Data: " + data);
+    });
+});
+
+
+	
+
+//  $.ajax({
+//   url: "localhost:3000/givemepass",
+//   dataType: "jsonp"
+// });
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "pass4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "engines": {
+    "node": "6.9.x",
+    "npm": "2.15.x"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "pramod",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "passbookster": "^0.1.4",
+    "pug": "^2.0.0-rc.4"
+  }
+}
