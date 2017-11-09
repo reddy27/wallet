@@ -176,7 +176,7 @@ app.get('/get-created-pass/', cors(), function (req, res) {
 app.get('/custom-page/', function (req, res) {
   const orderID = req.query.id;
     //../pass/16:18:35.pkpass
-   dirForPass = "../pass/" + orderID + ".pkpass";
+   dirForPass = "../views/" + orderID + ".pkpass";
   // console.log('dirForPass', dirForPass);
   console.log('dir name', __dirname );
  
