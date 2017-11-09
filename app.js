@@ -10,10 +10,9 @@ app.use(bodyParser());
 app.use(bodyParser.urlencoded());
 const pug = require('pug');
 app.set('view engine', 'pug')
-
-app.use(express.static('images'));
 app.use(express.static('pass'));
 app.use(express.static('views'));
+app.use(express.static('images'));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
