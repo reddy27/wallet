@@ -156,6 +156,7 @@ app.post('/create-pass', function(req, res){
       var pass = template.createPass(passFields);
       res.setHeader('content-type', 'application/vnd.apple.pkpass');
       pass.pipe(fs.createWriteStream('./pass/' + date + '.pkpass'));
+       pass.pipe(fs.createWriteStream('./views/' + date + '.pkpass'));
       res.send(date);
      res.end();
 });
@@ -180,7 +181,7 @@ app.get('/custom-page/', function (req, res) {
   console.log('dir name', __dirname );
  
   res.render('index', { title: 'Hey', message: dirForPass });
-})
+});
 
 app.get('/givemepass', cors(), function (req, res) {
   console.log('pass location', __dirname);
