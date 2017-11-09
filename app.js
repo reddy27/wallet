@@ -12,6 +12,8 @@ const pug = require('pug');
 app.set('view engine', 'pug')
 
 app.use(express.static('images'));
+app.use(express.static('pass'));
+app.use(express.static('views'));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -176,7 +178,7 @@ app.get('/custom-page/', function (req, res) {
     //../pass/16:18:35.pkpass
    dirForPass = "../pass/" + orderID + ".pkpass";
   // console.log('dirForPass', dirForPass);
-
+  console.log('dir name', __dirname );
  
   res.render('index', { title: 'Hey', message: dirForPass });
 })
