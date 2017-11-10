@@ -15,6 +15,8 @@ app.use(express.static('static'));
 app.use(express.static('images'));
 const url = require('url');
 
+const testFolder = './pass/';
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -79,7 +81,7 @@ var passFields = {
 var template = passbook.createTemplate('generic', {
   passTypeIdentifier: 'pass.org.kp.eciwalletpoc',
   teamIdentifier:     'NP763NDP24',
-  organizationName:   'kp.org',
+  organizationName:   'kp.org', 
 }, {
   certs: {
     wwdr: './certificate/wwdr.pem',
@@ -98,14 +100,11 @@ var template = passbook.createTemplate('generic', {
 //app.use('/static', express.static(path.join(__dirname, 'images')));
 
 app.get('/passhtml', function(req, res){
-  console.log('pass', __dirname + '/images/button.html');
+  console.log('passhtml', __dirname + '/images/button.html');
   res.sendFile(__dirname + '/images/button.html');
 });
 
 app.post('/create-pass', function(req, res){
-  var d =  Date();
-  var slicedDate =  d.slice(15, 25);
-  date = slicedDate.replace(/\s/g, '');
   var description = req.body.label;
 //var appointmentTime = req.body.appointmentTime;
   var passFields = {
@@ -175,23 +174,38 @@ app.get('/', function(req, res){
 });
 app.get('/get-created-pass/', cors(), function (req, res) {
   const orderID = req.query.id;
-  console.log('query', req);
   res.setHeader('content-type', 'application/vnd.apple.pkpass');
   res.sendFile( orderID + '.pkpass', { root: path.join(__dirname, './pass') });
+  fs.readdir(testFolder, (err, files) => {
+      files.forEach(file => {
+        console.log('get-created-pass', file);
+      });
+    });
+
   res.end();
 
 });
 
 app.get('/redirected-page', function(req, res){
     const dirForPass = req.query.a + ".pkpass";
-    console.log('dirForPass', dirForPass);
+    console.log('query is :', dirForPass);
+
+    fs.readdir(testFolder, (err, files) => {
+      files.forEach(file => {
+        console.log('list of files under pass', file);
+         console.log('dirname', __dirname);
+      });
+    });
+
+    //res.setHeader('content-type', 'application/vnd.apple.pkpass');
     res.render('index', { title: 'Hey', message: dirForPass });
 });
 
 app.get('/custom-page/', function (req, res) {
    const orderID = req.query.id;
    //res.redirect('/redirected-page/' +  orderID);
-    res.redirect(url.format({
+     //res.setHeader('content-type', 'application/vnd.apple.pkpass');
+     res.redirect(url.format({
        pathname:"/redirected-page",
        query: {
           "a": orderID,
