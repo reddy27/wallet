@@ -185,7 +185,6 @@ app.get('/get-created-pass/', cors(), function (req, res) {
 app.get('/redirected-page', function(req, res){
     const dirForPass = req.query.a + ".pkpass";
     console.log('dirForPass', dirForPass);
-    res.setHeader('content-type', 'application/vnd.apple.pkpass');
     res.render('index', { title: 'Hey', message: dirForPass });
 });
 
