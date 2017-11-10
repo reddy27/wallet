@@ -1,4 +1,2 @@
 # dummy
 # test
-# test
-# wallet
