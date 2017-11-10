@@ -79,7 +79,7 @@ var passFields = {
 var template = passbook.createTemplate('generic', {
   passTypeIdentifier: 'pass.org.kp.eciwalletpoc',
   teamIdentifier:     'NP763NDP24',
-  organizationName:   'kp.org', 
+  organizationName:   'kp.org',
 }, {
   certs: {
     wwdr: './certificate/wwdr.pem',
@@ -174,7 +174,7 @@ app.get('/', function(req, res){
   res.send('Hi, there am node service to generate a pass. routes are /passhtml{get}, /get-created-pass/{get}, /givemepass{post}, /givemepass{get} ');
 });
 app.get('/get-created-pass/', cors(), function (req, res) {
-  //const orderID = req.query.id;
+  const orderID = req.query.id;
   console.log('query', req);
   res.setHeader('content-type', 'application/vnd.apple.pkpass');
   res.sendFile( orderID + '.pkpass', { root: path.join(__dirname, './pass') });
