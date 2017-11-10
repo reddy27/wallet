@@ -106,9 +106,16 @@ app.get('/passhtml', function(req, res){
 
 app.post('/create-pass', function(req, res){
   var description = req.body.label;
+    function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+    };
 //var appointmentTime = req.body.appointmentTime;
+var d = new Date();
   var passFields = {
-      serialNumber:        'E5982H-I2',
+      serialNumber:        uuidv4(),
       barcode: {
         message:         '123456789',
         format:          'PKBarcodeFormatQR',
@@ -167,6 +174,7 @@ app.post('/create-pass', function(req, res){
       pass.pipe(fs.createWriteStream('./views/' + storeId + '.pkpass'));
       res.send(storeId);
       res.end();
+      console.log('test', passFields);
 });
 
 app.get('/', function(req, res){
