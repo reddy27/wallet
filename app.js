@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var passbook = require('passbookster');
-var path = require('path');
 var cors = require('cors');
 app.use(cors());
 var bodyParser = require('body-parser');
